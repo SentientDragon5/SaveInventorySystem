@@ -10,3 +10,5 @@ To create a UI that can display inventory information without loading the file e
 To create a UI that can be navigated by not just clicking I had to create the UISelect system. this uses distance and basicly raycasting to find the next button. The system included does not work very well, as this is the first system I have created on my own.
 ## Summary
 To summarize, inventory data is in 4 states: 1 saved in binary - Save.cs converted using SaveUtil, 2 converted to be able to saved to binary (all primitive data types) - Inventory.cs and Save.cs, 3 in easy access for editing - Inventory.cs, in the UI - UISelect.cs
+
+![alt text](https://github.com/SentientDragon5/SaveInventorySystem/blob/main/SaveLoadImg0.png?raw=true)
