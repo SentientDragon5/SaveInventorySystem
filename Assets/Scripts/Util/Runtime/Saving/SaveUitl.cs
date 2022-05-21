@@ -41,7 +41,7 @@ namespace Saving
         /// </summary>
         /// <typeparam name="T">This is the type of the object</typeparam>
         /// <param name="obj">this is the object that will be saved</param>
-        /// <param name="path">This is the path of where the file will be save to</param>
+        /// <param name="path">This is the path of where the file will be save to (like "/character0.chr")</param>
         public static void Save<T>(T obj, string path)
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -54,7 +54,7 @@ namespace Saving
         /// Use this to actually load the game
         /// </summary>
         /// <typeparam name="T">This is the type it shall be loaded as</typeparam>
-        /// <param name="path">This is the path the file will be found at</param>
+        /// <param name="path">This is the path the file will be found at (like "/character0.chr")</param>
         /// <returns></returns>
         public static T Load<T>(string path)
         {
