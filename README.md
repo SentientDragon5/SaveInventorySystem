@@ -1,5 +1,9 @@
 # Save Load and Inventory System
 This is a demonstration of creating a save and load system to save and load player and world data to a binary files. This can be used to save all sorts of data, from inventories to transform data.
+
+## The code
+![alt text (https://github.com/SentientDragon5/SaveInventorySystem/blob/53c8f87bd82e065acf3741ad563b3b369cf268b0/Assets/Scripts/Util/Runtime/Saving/SaveUitl.cs)
+
 ## The Inventory System
 The inventory system has two parts, the frontend and the backend.
 ### Backend
