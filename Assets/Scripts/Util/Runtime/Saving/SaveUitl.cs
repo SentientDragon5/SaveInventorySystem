@@ -15,6 +15,15 @@ IN THE SOFTWARE.
 
 
 Please Attribute
+
+
+This was originally posted in the SaveInventorySystem repo by SentientDragon5 2022
+https://github.com/SentientDragon5/SaveInventorySystem/blob/main/Assets/Scripts/Util/Runtime/Saving/SaveUitl.cs
+
+8/23/22 - change format of Save and Load
+5/22/22 - work on generic saving
+5/2/22  - initial release
+
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +31,6 @@ using UnityEngine;
 
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.Events;
 
 namespace Saving
 {
@@ -51,25 +59,37 @@ namespace Saving
         }
 
         /// <summary>
-        /// Use this to actually load the game
+        /// SAFE Use this to actually load the game
         /// </summary>
         /// <typeparam name="T">This is the type it shall be loaded as</typeparam>
         /// <param name="path">This is the path the file will be found at (like "/character0.chr")</param>
         /// <returns></returns>
-        public static T Load<T>(string path)
+        public static bool Load<T>(string path, out T obj)
         {
 
             if (!File.Exists(Application.persistentDataPath + path))
             {
-                Debug.LogError("There is no save data!");
-                return default(T);
+                Debug.LogWarning("There is no save data!");
+                obj = default(T);
+                return false;
             }
 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + path, FileMode.Open);
             T o = (T)bf.Deserialize(file);
             file.Close();
-            return o;
+            obj = o;
+            return true;
+        }
+
+        /// <summary>
+        /// Will Get if the File exists. Do note that Load is safe and will return False if no data is found.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool FileExists(string path)
+        {
+            return File.Exists(Application.persistentDataPath + path);
         }
 
         /// <summary>
@@ -154,6 +174,47 @@ namespace Saving
         public SaveA GetSave(SimpleChar s)
         {
             return base.GetSave<SimpleChar>(s);
+        }
+    }
+    */
+
+    /*
+
+    May 22 22
+    I have determined it is still a lot of work
+    I think that you would need to create an interface or base class derived from MonoBehavior for you to tell it which thing to load
+    I want to learn how to use atributes like [Range()] public float number = 0.5f; to create my own for something like
+    [SaveProperty]
+    that would tell the base class? or something to save it
+    i think it has been done before
+    but still
+    Yeah
+    it is hard
+
+
+    /*
+    /*
+    public class Saveable<M>
+    {
+        public List<object> list;
+        public M m;
+        public T GetT<T>(M m) where T : Saveable<M>
+        {
+            this.m = m;
+            return (T)this;
+        }
+        public void Load<T>()
+        {
+            
+        }
+    }
+    public class SaveA : Saveable<SD5VisualNovel.VNReader>
+    {
+        public bool level;
+
+        public SaveA(SD5VisualNovel.VNReader v)
+        {
+            level = v.enabled;
         }
     }
     */
